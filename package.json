@@ -1,0 +1,50 @@
+{
+  "name": "immutable-map-symbol-preprocessor",
+  "version": "0.0.1",
+  "description": "A way to create Immutable Maps from javascript objects that contain symbols as keys.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test:dev": "pwd && NODE_PATH=$(pwd) mocha --require ./setup/babel-polyfill.js ./test/index.dev.js | ./node_modules/.bin/bunyan",
+    "test:lib": "pwd && NODE_PATH=$(pwd) mocha --require ./setup/babel-polyfill.js ./test/index.lib.js | ./node_modules/.bin/bunyan",
+    "clean": "rimraf ./lib",
+    "build": "babel-node scripts/build.js",
+    "prepublish": "yarn run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobbwhy/immutable-map-symbol-preprocessor.git"
+  },
+  "keywords": [
+    "Immutable",
+    "Map",
+    "Symbol"
+  ],
+  "author": "Robert LaMarca <robertlamarca@gmail.com>",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/bobbwhy/immutable-map-symbol-preprocessor/issues"
+  },
+  "homepage": "https://github.com/bobbwhy/immutable-map-symbol-preprocessor#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/node": "^7.0.0-beta.40",
+    "@babel/preset-es2015": "^7.0.0-beta.40",
+    "@babel/preset-stage-0": "^7.0.0-beta.40",
+    "@babel/register": "^7.0.0-beta.40",
+    "babel-bridge": "^1.12.11",
+    "babel-transform-dir": "^1.0.5",
+    "bunyan": "^1.8.12",
+    "chai": "^4.1.2",
+    "jsonfile": "^4.0.0",
+    "mocha": "^5.0.1",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "immutable": "^3.8.2"
+  }
+}
