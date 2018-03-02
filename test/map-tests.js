@@ -5,7 +5,7 @@ const  log = Bunyan.createLogger({name: "CoreMethodOMatTest"});
 import 'mocha';
 import { expect } from 'chai';
 
-import { Map } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 const codePath
         = process.env.NODE_ENV === "PRODUCTION"
@@ -39,14 +39,14 @@ describe('test of methods to create immutable maps from js objects with symbols'
       eyes: 'sensitive',
       [FEELING]: 'groovy',
       [PURE]: 'no',
-      // more: { 
-      //   virtue: 'Fun',
-      //   height: 72,
-      //   [FEELING]: { 
-      //     mood: 'fine',
-      //     temperament: 'mellow'
-      //   }
-      // },
+      more: { 
+        virtue: 'Fun',
+        height: 72,
+        [FEELING]: { 
+          mood: 'fine',
+          temperament: 'mellow'
+        }
+      },
       [MORE]: { 
         spouse: 'Grace Hopper',
         age: 24, 
@@ -134,19 +134,19 @@ describe('test of methods to create immutable maps from js objects with symbols'
         const pure = map.get(PURE);
         expect(pure).to.equal('no');
 
-        const more = map.get(MORE);
+        const more = map.get('more');
         expect(Map.isMap(more)).to.equal(true);
-        expect(more.get('spouse')).to.equal('Grace Hopper');
-        expect(map.get(MORE).get('spouse')).to.equal('Grace Hopper');
+        expect(more.get('virtue')).to.equal('Fun');
+        expect(map.get('more').get('virtue')).to.equal('Fun');
+        expect(map.getIn(['more', 'virtue'])).to.equal('Fun');
+
+
+        const moreS = map.get(MORE);
+        expect(Map.isMap(moreS)).to.equal(true);
+        expect(moreS.get('spouse')).to.equal('Grace Hopper');
+        expect(map.getIn([MORE, 'spouse'])).to.equal('Grace Hopper');
         
-
-        return
-
-
-        const moreVirtue = map.get(['more', 'virtue']);
-        expect(moreVirtue).to.equal('Fun');
-
-
+        expect(map.getIn(['more', FEELING, 'mood'])).to.equal('fine');
       }
     );
   }  

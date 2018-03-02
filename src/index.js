@@ -2,9 +2,9 @@
 
 import { Map } from 'immutable';
 
-export const  createMap = (object) => { 
+export const  createMap = (obj) => { 
 
-  var keys = Object.keys(object).concat(Object.getOwnPropertySymbols(object));
+  var keys = Object.keys(obj).concat(Object.getOwnPropertySymbols(obj));
   var i = 0;
   var _l = keys.length;
   var key;
@@ -12,16 +12,15 @@ export const  createMap = (object) => {
 
   for ( ; i!==_l; i++) { 
     key = keys[i];
-    args[i] = [key, object[key]]
+    args[i] = [key, obj[key]]
   }
 
-  console.log('::::', args);
   return Map(args);
 }
 
-export const  createMapDeep = (object) => { 
+export const  createMapDeep = (obj) => { 
 
-  var keys = Object.keys(object).concat(Object.getOwnPropertySymbols(object));
+  var keys = Object.keys(obj).concat(Object.getOwnPropertySymbols(obj));
   let i = 0;
   let _l = keys.length;
   let key;
@@ -30,13 +29,13 @@ export const  createMapDeep = (object) => {
   let childArgs;
 
   for ( ; i!==_l; i++) { 
-
     key = keys[i];
-    if (typeof object[key] ==='object') { 
-      childArgSet.push([key, object[key]]);
-      break;
+    if (typeof obj[key] ==='object') { 
+      childArgSet.push([key, obj[key]]);
+    } else { 
+      args[i] = [key, obj[key]]
     }
-    args[i] = [key, object[key]]
+    
   }  
   let map = Map(args);
   let db;
