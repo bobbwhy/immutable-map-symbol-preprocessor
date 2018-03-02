@@ -2,7 +2,7 @@
   "name": "immutable-map-symbol-preprocessor",
   "version": "0.0.1",
   "description": "A way to create Immutable Maps from javascript objects that contain symbols as keys.",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "directories": {
     "doc": "doc",
     "test": "test"
@@ -29,6 +29,9 @@
     "url": "https://github.com/bobbwhy/immutable-map-symbol-preprocessor/issues"
   },
   "homepage": "https://github.com/bobbwhy/immutable-map-symbol-preprocessor#readme",
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/core": "^7.0.0-beta.40",
